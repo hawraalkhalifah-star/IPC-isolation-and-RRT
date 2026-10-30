@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<title>IPC Isolation & RRT Tool</title>
+<title>أداة تصعيد بلاغات الصحة العامة ومسارات الاستجابة السريعة</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
@@ -144,6 +144,27 @@ header a{color:var(--accent)}
 .res-direct{border-color:var(--rd)} .res-direct .r-badge{background:var(--rd-bg);color:var(--rd)} .res-direct .r-actions li{border-right-color:var(--rd)}
 .res-remote .r-badge{background:var(--rr-bg);color:var(--rr)}
 .res-none .r-badge{background:var(--std-bg);color:var(--muted)}
+.res-cond{border-color:var(--ra)} .res-cond .r-badge{background:var(--ra-bg);color:var(--ra)} .res-cond .r-actions li{border-right-color:var(--ra)}
+.r-src{font-size:.78rem;font-weight:700;color:var(--accent);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:-4px 0 12px;line-height:1.6}
+.r-src b{color:var(--rr)}
+.r-gnote{font-size:.8rem;color:var(--muted);line-height:1.8;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.r-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;flex:none;max-width:52%}
+.r-tag.g2{color:var(--ra);background:var(--ra-bg)} .r-tag.g2.now{color:var(--rd);background:var(--rd-bg)}
+.r-tag.off{color:var(--muted);background:var(--std-bg)}
+.lvl{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;line-height:1.75;padding:8px 10px;border-radius:9px;margin:0 0 12px;background:var(--bg);border:1px solid var(--line)}
+.lvl-k{flex:none;font-weight:700;font-size:.74rem;padding:2px 8px;border-radius:12px;background:var(--accent);color:var(--surface);margin-top:3px}
+.lvl-2{border-color:var(--rd);background:var(--rd-bg)} .lvl-c{border-color:var(--ra);background:var(--ra-bg)}
+.gen{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:7px}
+.gen-h{font-size:.82rem;font-weight:700;color:var(--muted);margin:0 0 2px}
+.rrt-refs{font-size:.8rem;color:var(--muted);line-height:1.9;margin:6px 2px 0}
+.rrt-refs b{color:var(--ink)} .rrt-refs ol{margin:4px 0;padding-inline-start:20px}
+.esc-sum{border:1.5px solid var(--line);border-radius:12px;padding:10px;margin-bottom:14px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.esc-row{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;line-height:1.75;padding:8px 10px;border-radius:9px;background:var(--surface);border-right:4px solid var(--line)}
+.esc-row.now{border-right-color:var(--rd)} .esc-row.h24{border-right-color:var(--ra)} .esc-row.on{border-right-color:var(--rr)} .esc-row.off{color:var(--muted)}
+.esc-k{flex:none;font-weight:700;font-size:.78rem;padding:2px 8px;border-radius:12px;background:var(--accent);color:var(--surface);margin-top:3px}
+.esc-more{font-size:.78rem;color:var(--muted);margin:0 4px}
+.crit-t{font-weight:700;margin-inline-start:6px;padding:1px 8px;border-radius:12px;font-size:.74rem;white-space:nowrap}
+.crit-t.I{color:var(--rd);background:var(--rd-bg)} .crit-t.h24{color:var(--ra);background:var(--ra-bg)}
 .r-iso h3{font-size:.95rem;margin:0 0 8px}
 .r-iso-item{display:flex;flex-direction:column;gap:4px;padding:9px 0;border-top:1px dashed var(--line)}
 .r-iso-item:first-of-type{border-top:0}
@@ -174,16 +195,16 @@ header a{color:var(--accent)}
 
 <div class="wrap">
   <header>
-    <h1>IPC Isolation &amp; RRT Tool</h1>
-    <p>Part 1: isolation precautions by disease (CDC Appendix A, updated Sept 11, 2026). Part 2: IPC rapid response team activation pathway.</p>
+    <h1 lang="ar" dir="rtl" style="font-family:var(--f-ar)">أداة تصعيد بلاغات الصحة العامة ومسارات الاستجابة السريعة</h1>
+    <p>Public Health Notification Escalation &amp; Rapid Response Pathways Tool. Main: escalation and RRT activation by disease and case status, per two Weqaya guides. Supporting: isolation precautions (CDC Appendix A).</p>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Tool parts">
-    <button class="tab" role="tab" id="tabbtn-iso" aria-controls="tab-iso" aria-selected="true" data-tab="iso"><span class="tab-n">1</span> Isolation precautions</button>
-    <button class="tab" role="tab" id="tabbtn-rrt" aria-controls="tab-rrt" aria-selected="false" data-tab="rrt"><span class="tab-n">2</span> RRT Pathway</button>
+    <button class="tab" role="tab" id="tabbtn-rrt" aria-controls="tab-rrt" aria-selected="true" data-tab="rrt"><span class="tab-n">1</span> Escalation &amp; RRT</button>
+    <button class="tab" role="tab" id="tabbtn-iso" aria-controls="tab-iso" aria-selected="false" data-tab="iso"><span class="tab-n">2</span> Isolation (supporting)</button>
   </nav>
 
-  <section id="tab-iso" role="tabpanel" aria-labelledby="tabbtn-iso">
+  <section id="tab-iso" role="tabpanel" aria-labelledby="tabbtn-iso" hidden>
 
   <div class="console">
     <div class="search">
@@ -209,18 +230,27 @@ header a{color:var(--accent)}
     <p class="cite" style="margin-top:0">Colors match common isolation door signs: <b style="color:var(--air)">blue Airborne</b>, <b style="color:var(--drop)">red Droplet</b>, <b style="color:var(--cont)">green Contact</b>, <b style="color:var(--std)">grey Standard</b>, <b style="color:var(--spec)">purple Special</b>. Neither WHO nor CDC sets official sign colors, so check your facility's signage.</p>
     <ul class="routes" id="legend"></ul>
     <p class="cite"><b>Reference:</b> Siegel JD, Rhinehart E, Jackson M, Chiarello L, and the Healthcare Infection Control Practices Advisory Committee. <i>2007 Guideline for Isolation Precautions: Preventing Transmission of Infectious Agents in Healthcare Settings</i>, Appendix A: Type and Duration of Precautions Recommended for Selected Infections and Conditions. Centers for Disease Control and Prevention; last updated September 11, 2026. <a href="https://www.cdc.gov/infection-control/hcp/isolation-precautions/appendix-a-type-duration.html" target="_blank" rel="noopener">cdc.gov/infection-control/hcp/isolation-precautions/appendix-a-type-duration.html</a></p>
-    <p class="cite"><b>Added from other guidance (not in Appendix A):</b> <a href="https://www.cdc.gov/mers/hcp/infection-control/index.html" target="_blank" rel="noopener">MERS-CoV</a>, <a href="https://www.cdc.gov/candida-auris/hcp/infection-control/index.html" target="_blank" rel="noopener">Candida auris</a>, <a href="https://www.cdc.gov/mpox/hcp/infection-control/healthcare-settings.html" target="_blank" rel="noopener">mpox</a>, <a href="https://www.cdc.gov/bird-flu/hcp/novel-flu-infection-control/" target="_blank" rel="noopener">novel influenza A</a>, <a href="https://www.cdc.gov/zika/hc-providers/infection-control.html" target="_blank" rel="noopener">Zika</a>, <a href="https://www.cdc.gov/chikungunya/hcp/treatment-prevention/index.html" target="_blank" rel="noopener">chikungunya</a> (CDC); <a href="https://www.who.int/news-room/fact-sheets/detail/rift-valley-fever" target="_blank" rel="noopener">Rift Valley fever</a> (WHO); <a href="https://www.canada.ca/en/public-health/services/laboratory-biosafety-biosecurity/pathogen-safety-data-sheets-risk-assessment/alkhumra-virus.html" target="_blank" rel="noopener">Alkhurma hemorrhagic fever</a> (Public Health Agency of Canada). The RRT activation pathway in part 2 comes from your RRT tool.</p>
+    <p class="cite"><b>Added from other guidance (not in Appendix A):</b> <a href="https://www.cdc.gov/mers/hcp/infection-control/index.html" target="_blank" rel="noopener">MERS-CoV</a>, <a href="https://www.cdc.gov/candida-auris/hcp/infection-control/index.html" target="_blank" rel="noopener">Candida auris</a>, <a href="https://www.cdc.gov/mpox/hcp/infection-control/healthcare-settings.html" target="_blank" rel="noopener">mpox</a>, <a href="https://www.cdc.gov/bird-flu/hcp/novel-flu-infection-control/" target="_blank" rel="noopener">novel influenza A</a>, <a href="https://www.cdc.gov/zika/hc-providers/infection-control.html" target="_blank" rel="noopener">Zika</a>, <a href="https://www.cdc.gov/chikungunya/hcp/treatment-prevention/index.html" target="_blank" rel="noopener">chikungunya</a> (CDC); <a href="https://www.who.int/news-room/fact-sheets/detail/rift-valley-fever" target="_blank" rel="noopener">Rift Valley fever</a> (WHO); <a href="https://www.canada.ca/en/public-health/services/laboratory-biosafety-biosecurity/pathogen-safety-data-sheets-risk-assessment/alkhumra-virus.html" target="_blank" rel="noopener">Alkhurma hemorrhagic fever</a> (Public Health Agency of Canada). The RRT activation pathway (main tab) comes from two Weqaya guides: the Public Health Events Center notification list (Communicable Diseases Preparedness &amp; Response Plan v1, Aug 2026) and the IPC RRT Activation Pathway list (2026).</p>
     <small>Reference aid only. Always follow your facility's infection prevention policy and current CDC guidance; entries marked "Special" or "See linked entry" point to separate guidance.</small>
   </section>
   </section>
 
-  <section id="tab-rrt" role="tabpanel" aria-labelledby="tabbtn-rrt" dir="rtl" lang="ar" hidden>
+  <section id="tab-rrt" role="tabpanel" aria-labelledby="tabbtn-rrt" dir="rtl" lang="ar">
     <div class="rrt-head">
-      <h2>IPC RRT ACTIVATION PATHWAY TOOL</h2>
-      <p>أداة مساعدة للقرار — مسار تفعيل فرق الاستجابة السريعة لمكافحة العدوى</p>
+      <h2>تصعيد البلاغ ومسار الاستجابة السريعة</h2>
+      <p>أداة مساعدة للقرار — تعرض لكل حالة (مشتبهة أو مؤكدة) التفعيل حسب الدليلين: أولًا <b>الدليل الأول</b> خطة التأهب والاستجابة للأمراض المعدية – قائمة الإبلاغ لمركز أحداث الصحة العامة (وقاية، الإصدار 1، أغسطس 2026)، ثم <b>الدليل الثاني</b> قائمة أمراض مسار تفعيل فرق الاستجابة السريعة لمكافحة العدوى (وقاية 2026). احتياطات العزل متاحة كجزء مساند في التبويب الثاني.</p>
     </div>
     <div class="rrt-progress" id="rrtProgress" aria-hidden="true"></div>
     <div id="rrtApp"></div>
+    <section class="rrt-refs" aria-label="المراجع">
+      <b>المراجع</b>
+      <ol>
+        <li>الدليل الأول: هيئة الصحة العامة (وقاية). خطة التأهب والاستجابة للأمراض المعدية، الإصدار 1، أغسطس 2026 — ملحق 1: قائمة الإبلاغ لمركز أحداث الصحة العامة، ومستويات التأهب، ومعايير التصعيد. <i>يتم تحديث قائمة الإبلاغ بشكل دوري من قبل لجنة الاستجابة لأحداث الصحة العامة؛ تحقق من آخر نسخة معتمدة.</i></li>
+        <li>الدليل الثاني: هيئة الصحة العامة (وقاية). قائمة أمراض مسار تفعيل فرق الاستجابة السريعة لمكافحة العدوى، 2026.</li>
+        <li>احتياطات العزل (جزء مساند): CDC, 2007 Guideline for Isolation Precautions — Appendix A، آخر تحديث 11 سبتمبر 2026.</li>
+      </ol>
+      <span>أداة مساندة للقرار، ولا تغني عن السياسات والإجراءات المعتمدة.</span>
+    </section>
   </section>
 </div>
 
@@ -697,10 +727,65 @@ const indicators = [
   {id:"containment", text:"وجود قصور في تطبيق تدابير الاحتواء، أو عدم قدرة المنشأة على إدارة الحدث بكفاءة"},
   {id:"support", text:"الحاجة إلى دعم فني عاجل أو تقييم ميداني بناءً على نتائج تقييم المخاطر"},
 ];
+// ===== GUIDE 2: Weqaya Communicable Diseases Preparedness & Response Plan, v1 (Aug 2026) =====
+// Annex 1: Public Health Events Center notification list. s: S = suspected case, C = confirmed, A = event/cluster (any status).
+// t: I = immediate, 24 = within <24 h. auto: criterion is met by the status itself (no extra threshold).
+const G2_SRC_AR = "الدليل الأول: خطة التأهب والاستجابة للأمراض المعدية – هيئة الصحة العامة (وقاية)، الإصدار 1، أغسطس 2026 – ملحق 1: قائمة الإبلاغ لمركز أحداث الصحة العامة";
+const G1_SRC_AR = "الدليل الثاني: قائمة أمراض مسار تفعيل فرق الاستجابة السريعة لمكافحة العدوى – هيئة الصحة العامة (وقاية)، 2026";
+const CONF={s:"C",t:"I",ar:"حالة مؤكدة",auto:true}, DEATH_I={s:"C",t:"I",ar:"وفاة حالة مؤكدة"}, DEATH_24={s:"C",t:"24",ar:"وفاة حالة مؤكدة"};
+const G2 = {
+  // existing guide-1 diseases
+  lassa:[CONF], marburg:[CONF], ebola:[CONF], nipah:[CONF], cchf:[CONF], plague_p:[CONF], plague_b:[CONF],
+  avian_flu:[CONF], rvf:[CONF], anthrax:[CONF], zika:[CONF], chikungunya:[CONF], arboviral:[{...CONF,ar:"حالة مؤكدة (فيروس غرب النيل)"}],
+  mers:[{s:"S",t:"I",ar:"حالة مشتبهة",auto:true}],
+  novel_flu:[{s:"C",t:"I",ar:"حالة مؤكدة لإنفلونزا مستجدة",auto:true}],
+  covid:[{s:"C",t:"I",ar:"حالة مؤكدة لمتحور مثير للقلق، أو متحور ذو أهمية، أو متحور قيد المراقبة"},DEATH_I],
+  dengue:[DEATH_24], alkhurma:[DEATH_24], yellow:[DEATH_24],
+  diphtheria:[CONF],
+  measles:[{s:"C",t:"24",ar:"حالتان مؤكدتان من نفس المنطقة خلال فترة ثلاثة أسابيع"}],
+  tb:[{s:"C",t:"I",ar:"حالة مؤكدة للسل المقاوم للأدوية",auto:true},{s:"C",t:"I",ar:"حالة تستمر إيجابية في نتيجة اختبار مانتو أو المزرعة المخبرية بعد انتهاء مرحلة العلاج"}],
+  mpox_1b:[CONF,{s:"S",t:"I",ar:"حالة مشتبهة مخالطة لحالة إمبوكس (النمط الجيني الأول)"},{s:"S",t:"I",sh:"حالة مشتبهة لها تاريخ سفر إلى إحدى دول وسط وشرق أفريقيا المحددة في القائمة",ar:"حالة مشتبهة لها تاريخ سفر إلى أي من الدول التالية: جمهورية الكونغو الديمقراطية، جمهورية الكونغو، جمهورية أفريقيا الوسطى، بوروندي، رواندا، أوغندا، كينيا، الكاميرون، الجابون، أنغولا، جنوب السودان، تنزانيا، زامبيا"}],
+  mpox:[{s:"C",t:"I",ar:"حالة مؤكدة (النمط الجيني الثاني) بعمر أقل من 21 سنة"}],
+};
+// diseases on guide 2 only (not on the guide-1 list)
+const g2Only = [
+  {id:"cholera", name:"الكوليرا (Cholera)", c:[{s:"C",t:"I",ar:"حالة مؤكدة (O1 و O139، انتقال محلي)",auto:true},DEATH_I]},
+  {id:"botulism", name:"التسمم الوشيقي (Botulism)", c:[CONF]},
+  {id:"listeria", name:"الليستيريا (Listeria)", c:[CONF]},
+  {id:"legionella", name:"داء الفيلقيات (Legionellosis)", c:[CONF]},
+  {id:"hepa", name:"التهاب الكبد (أ) (Hepatitis A)", c:[{s:"C",t:"I",ar:"حالتان مؤكدتان ومرتبطتان وبائيًا"}]},
+  {id:"norovirus", name:"فيروس نورو (Norovirus)", c:[CONF]},
+  {id:"foodwater", name:"حالات مرتبطة بعوامل خطر الماء والغذاء (Water and food risk factors)", c:[
+    {s:"A",t:"I",ar:"25 حالة مرتبطة وبائيًا"},{s:"A",t:"I",ar:"حالات مرتبطة بسلسلة مطاعم أو منتج"},{s:"A",t:"I",ar:"حالة حرجة أو وفاة"},
+    {s:"A",t:"I",ar:"من مصدر عام وليست ضمن نطاق عمل اللجنة الرباعية (مثل: السفن، والرحلات البحرية السياحية، والمطارات)"}]},
+  {id:"polio", name:"شلل الأطفال (Poliomyelitis)", c:[{s:"S",t:"I",ar:"حالة اشتباه (شلل رخو حاد – Acute flaccid paralysis, AFP)",auto:true},{s:"A",t:"I",ar:"حالة مرتبطة باللقاح"},{s:"A",t:"I",ar:"عينة بيئية إيجابية"}]},
+  {id:"rubella", name:"الحصبة الألمانية (Rubella)", c:[{s:"C",t:"24",ar:"حالتان مؤكدتان من نفس المنطقة خلال فترة ثلاثة أسابيع"}]},
+  {id:"mumps", name:"النكاف (Mumps)", c:[{s:"C",t:"24",ar:"ثلاث حالات مؤكدة من نفس المنطقة خلال فترة أسبوع"}]},
+  {id:"pertussis", name:"السعال الديكي (Pertussis)", c:[{s:"C",t:"24",ar:"حالتان مؤكدتان من أسر مختلفة ومرتبطتان وبائيًا"}]},
+  {id:"tetanus", name:"الكزاز (Tetanus)", c:[{s:"C",t:"24",ar:"حالتان مؤكدتان من نفس المنطقة خلال فترة ثلاثة أسابيع"}]},
+  {id:"chickenpox", name:"الجدري المائي (Chickenpox)", c:[{s:"A",t:"24",ar:"ثلاث حالات مرتبطة وبائيًا"}]},
+  {id:"typhoid", name:"التيفوئيد (Typhoid)", c:[{s:"C",t:"I",ar:"حالتان مؤكدتان من نفس المنطقة خلال فترة ثلاثة أسابيع"}]},
+  {id:"rota", name:"فيروس الروتا (Rotavirus)", c:[{s:"A",t:"I",ar:"عشر حالات مرتبطة وبائيًا"}]},
+  {id:"hepb", name:"التهاب الكبد (ب) (Hepatitis B)", c:[{s:"A",t:"24",ar:"عشر حالات مرتبطة وبائيًا"}]},
+  {id:"hib", name:"المستدمية النزلية (ب) (Haemophilus influenzae type B)", c:[{s:"C",t:"24",ar:"حالة مؤكدة",auto:true}]},
+  {id:"igas", name:"الالتهاب الشديد للمكورات العقدية من المجموعة الغازية أ (Invasive Streptococcus Group A)", c:[{s:"C",t:"24",ar:"حالتان مؤكدتان مرتبطتان وبائيًا"}]},
+  {id:"pneumo_men", name:"التهاب السحايا بالمكورات العقدية الرئوية (Pneumococcal Meningitis)", c:[{s:"C",t:"I",ar:"حالتان مؤكدتان مرتبطتان وبائيًا"}]},
+  {id:"mening", name:"التهاب السحايا بالمكورات السحائية النيسرية (Neisseria meningitidis)", c:[{s:"C",t:"I",ar:"حالتان مؤكدتان مرتبطتان وبائيًا"}]},
+  {id:"hajj_men", name:"حمى شوكية مرتبطة بأداء العمرة والحج (Meningitis – Umrah/Hajj)", c:[{s:"C",t:"24",ar:"حالة مؤكدة",auto:true}]},
+  {id:"influenza", name:"الإنفلونزا الموسمية (Influenza)", c:[DEATH_24]},
+  {id:"rsv", name:"الفيروس المخلوي التنفسي (Respiratory Syncytial Virus)", c:[DEATH_I]},
+  {id:"malaria", name:"الملاريا (Malaria)", c:[DEATH_I]},
+  {id:"rabies", name:"السعار (Rabies)", c:[CONF]},
+  {id:"schisto", name:"البلهارسيا (Schistosomiasis)", c:[DEATH_I]},
+  {id:"leish", name:"الليشمانيا (Leishmaniasis)", c:[DEATH_I]},
+  {id:"qfever", name:"حمى كيو (Q Fever)", c:[CONF]},
+];
+g2Only.forEach(d=>{ G2[d.id]=d.c; });
 const allDiseases = [
   ...groupA.map(d=>({...d, group:"A"})),
   ...remoteOnly.map(d=>({...d, group:"remoteOnly"})),
   ...groupB.map(d=>({...d, group:"B"})),
+  ...g2Only.map(d=>({id:d.id, name:d.name, group:null})),
 ].sort((a,b)=>a.name.localeCompare(b.name,'ar'));
 
 // Link each RRT disease to its Part 1 isolation entries (p = name prefixes, q = search used when jumping)
@@ -728,13 +813,41 @@ const RRT_ISO = {
   alkhurma:{p:["Alkhurma"],q:"alkhurma"},
   zika:{p:["Zika"],q:"zika"},
   mpox_1b:{p:["Mpox"],q:"mpox"}, mpox:{p:["Mpox"],q:"mpox"},
-  chikungunya:{p:["Chikungunya"],q:"chikungunya"}
+  chikungunya:{p:["Chikungunya"],q:"chikungunya"},
+  cholera:{p:["Cholera","Gastroenteritis — cholera"],q:"cholera"},
+  botulism:{p:["Botulism","Clostridium botulinum","Food poisoning — botulism"],q:"botulism"},
+  listeria:{p:["Listeriosis","Meningitis — Listeria"],q:"listeria"},
+  legionella:{p:["Legionnaires","Pneumonia — Legionella"],q:"legionella"},
+  hepa:{p:["Hepatitis A"],q:"hepatitis a"},
+  norovirus:{p:["Norovirus","Gastroenteritis — norovirus"],q:"norovirus"},
+  foodwater:{p:["Gastroenteritis (general)"],q:"gastroenteritis"},
+  polio:{p:["Poliomyelitis"],q:"poliomyelitis"},
+  rubella:{p:["Rubella","Congenital rubella"],q:"rubella"},
+  mumps:{p:["Mumps"],q:"mumps"},
+  pertussis:{p:["Pertussis"],q:"pertussis"},
+  tetanus:{p:["Tetanus"],q:"tetanus"},
+  chickenpox:{p:["Chickenpox","Varicella-zoster (chickenpox)"],q:"chickenpox"},
+  typhoid:{p:["Typhoid fever"],q:"typhoid"},
+  rota:{p:["Rotavirus","Gastroenteritis — rotavirus"],q:"rotavirus"},
+  hepb:{p:["Hepatitis B"],q:"hepatitis b"},
+  hib:{p:["Haemophilus influenzae","Meningitis — Haemophilus","Epiglottitis, due to Haemophilus","Pneumonia — Haemophilus"],q:"haemophilus"},
+  igas:{p:["Streptococcal disease (group A) — serious invasive"],q:"streptococcal group a"},
+  pneumo_men:{p:["Meningitis — Streptococcus pneumoniae"],q:"meningitis pneumoniae"},
+  mening:{p:["Meningitis — Neisseria","Meningococcal disease","Pneumonia — meningococcal"],q:"meningococcal"},
+  hajj_men:{p:["Meningitis — Neisseria","Meningococcal disease"],q:"meningococcal"},
+  influenza:{p:["Influenza — human"],q:"influenza human"},
+  rsv:{p:["Respiratory syncytial"],q:"respiratory syncytial"},
+  malaria:{p:["Malaria"],q:"malaria"},
+  rabies:{p:["Rabies"],q:"rabies"},
+  schisto:{p:["Schistosomiasis"],q:"schistosomiasis"},
+  leish:{p:["Leishmaniasis"],q:"leishmaniasis"},
+  qfever:{p:["Q fever"],q:"q fever"}
 };
 const isoFor = rid => DATA.filter(d=>RRT_ISO[rid].p.some(x=>d.name.startsWith(x)));
 const rrtFor = d => allDiseases.filter(r=>RRT_ISO[r.id] && RRT_ISO[r.id].p.some(x=>d.name.startsWith(x)));
 function rrtLinks(d){
   const rs_=rrtFor(d); if(!rs_.length) return "";
-  return `${NOTE_HTML}<div><h3>IPC RRT activation pathway</h3><div style="display:flex;flex-wrap:wrap;gap:6px">${rs_.map(r=>`<button class="xlink" data-rrt="${r.id}"><span lang="ar" dir="rtl">${esc(r.name)}</span> →</button>`).join("")}</div></div>`;
+  return `${rs_.some(r=>r.group)?NOTE_HTML:""}<div><h3>RRT activation pathway (Guide 1 / Guide 2)</h3><div style="display:flex;flex-wrap:wrap;gap:6px">${rs_.map(r=>`<button class="xlink" data-rrt="${r.id}"><span lang="ar" dir="rtl">${esc(r.name)}</span> →</button>`).join("")}</div></div>`;
 }
 
 let rs = {step:1, disease:null, status:null, checks:{}, showResult:false};
@@ -748,13 +861,15 @@ function rrtRender(){
 function rStep1(){
   const items = allDiseases.map(d=>{
     const sel = rs.disease && rs.disease.id===d.id ? 'sel':'';
-    const tag = d.group==="A" ? "مباشر / عن بُعد" : d.group==="B" ? "مشروط" : "عن بُعد فقط";
-    return `<button class="r-opt ${sel}" data-id="${d.id}"><span>${d.name}</span><span class="r-tag">${tag}</span></button>`;
+    const g1 = d.group==="A" ? (d.remote?"د٢: مباشر / عن بُعد":"د٢: مباشر عند التأكيد") : d.group==="B" ? "د٢: مشروط" : d.group==="remoteOnly" ? "د٢: عن بُعد فقط" : "";
+    const c2 = G2[d.id]||[]; const g2 = c2.length ? (c2.some(c=>c.t==="I")?"د١: إبلاغ فوري":"د١: خلال 24 ساعة") : "";
+    const tags = (g2?`<span class="r-tag g2 ${c2.some(c=>c.t==="I")?"now":""}">${g2}</span>`:`<span class="r-tag off">د١: غير مدرج</span>`) + (g1?`<span class="r-tag">${g1}</span>`:`<span class="r-tag off">د٢: غير مدرج</span>`);
+    return `<button class="r-opt ${sel}" data-id="${d.id}"><span>${d.name}</span><span class="r-tags">${tags}</span></button>`;
   }).join('');
   return `<div class="rcard">
     <div class="r-label">الخطوة ١ من ٣</div>
     <h2 class="r-title">اختر المرض</h2>
-    <p class="r-hint">ابحث عن اسم المرض بالعربية أو الإنجليزية أو مرّر القائمة لاختياره.</p>
+    <p class="r-hint">ابحث عن اسم المرض بالعربية أو الإنجليزية أو مرّر القائمة لاختياره. تضم القائمة أمراض الدليلين: «د١» الدليل الأول (قائمة الإبلاغ لمركز أحداث الصحة العامة) و«د٢» الدليل الثاني (مسار تفعيل فرق الاستجابة السريعة لمكافحة العدوى).</p>
     <label for="rSearch" hidden>ابحث عن المرض</label>
     <input class="r-search" id="rSearch" type="search" placeholder="اكتب اسم المرض..." autocomplete="off">
     <div class="r-list" id="rList">${items}</div>
@@ -762,11 +877,11 @@ function rStep1(){
 }
 function rStep2(){
   const d = rs.disease;
-  const canSuspect = d.group==="A" ? d.remote : (d.group==="remoteOnly");
-  const canConfirm = d.group==="A" || d.group==="B";
+  const canSuspect = true, canConfirm = true;
   return `<div class="rcard">
     <div class="r-label">الخطوة ٢ من ٣</div>
     <h2 class="r-title">${d.name}</h2>
+    ${escSummary(d)}
     <p class="r-hint">ما حالة التصنيف الحالية لهذه الحالة؟</p>
     <div class="r-choices">
       <button class="r-choice ${rs.status==='suspected'?'sel':''}" data-status="suspected" ${canSuspect?'':'disabled'} aria-pressed="${rs.status==='suspected'}">مشتبهة<small>لم تُؤكد مخبريًا بعد</small></button>
@@ -808,6 +923,12 @@ function rEndNav(){
 function computeResult(){
   const d = rs.disease;
   if(!d) return null;
+  if(!d.group){
+    return {type:"none", title:"غير مدرج في الدليل الثاني",
+      desc:"هذا المرض غير مدرج في قائمة أمراض مسار تفعيل فرق الاستجابة السريعة لمكافحة العدوى، فلا يُفعَّل فريق الاستجابة السريعة لمكافحة العدوى بناءً على هذا الدليل. تُطبَّق إجراءات مكافحة العدوى المعتادة في المنشأة، ويُرجع إلى الدليل الأول أعلاه.",
+      chips:["لا تفعيل حسب الدليل الثاني"],
+      actions:["تطبيق احتياطات العزل ومكافحة العدوى المعتمدة للمرض","الرجوع إلى نتيجة الدليل الأول (مركز أحداث الصحة العامة) أعلاه"]};
+  }
   if(d.group==="A" && rs.status==="confirmed"){
     return {type:"direct", title:"التفعيل المباشر",
       desc:"يُفعَّل فريق الاستجابة السريعة لمكافحة العدوى فور تأكيد هذه الحالة، دون اشتراط تحقق مؤشرات تصعيد إضافية. يبدأ التفعيل بالتنسيق الفوري مع الفرع/المكتب والمنشأة الصحية لتقييم الوضع.",
@@ -839,22 +960,113 @@ function computeResult(){
       chips:["تقييم أولي عن بُعد","إعادة التقييم عند تغيّر المعطيات"],
       actions:["تنسيق عن بُعد مع الفرع/المكتب والمنشأة الصحية للتحقق من الوضع","التحقق من تطبيق تدابير العزل والاحتواء","متابعة مؤشرات التصعيد وإعادة التقييم إذا تغيرت المعطيات الميدانية","التصعيد إلى المسار المشروط فور تحقق أي مؤشر تصعيد"]};
   }
-  return {type:"none", title:"غير مدرج ضمن مسارات التفعيل الثلاثة بهذه الحالة",
-    desc:"هذا المرض في حالته المشتبهة غير مدرج ضمن قوائم التفعيل المباشر أو عن بُعد أو المشروط. يُتابع وفق آليات الترصد الوبائي الاعتيادية، ويُعاد التقييم فور تأكيد التشخيص مخبريًا.",
+  if(rs.status==="confirmed"){
+    return {type:"none", title:"لا تفعيل حسب الدليل الثاني بهذه الحالة",
+      desc:"الحمى النزفية مجهولة السبب تندرج في الدليل الثاني عند الاشتباه فقط. بعد تحديد المسبب وتأكيده، اختر المرض المؤكد باسمه لتحديد مساره الصحيح.",
+      chips:["اختر المرض المؤكد باسمه"],
+      actions:["العودة إلى الخطوة ١ واختيار المرض المؤكد (مثل إيبولا أو لاسا أو القرم والكونغو)"]};
+  }
+  return {type:"none", title:"لا تفعيل حسب الدليل الثاني في مرحلة الاشتباه",
+    desc:"هذا المرض مدرج في الدليل الثاني، لكنه لا يندرج ضمن مسارات التفعيل في حالته المشتبهة. يُتابع وفق آليات الترصد الوبائي الاعتيادية، ويُعاد التقييم فور تأكيد التشخيص مخبريًا.",
     chips:["يتبع الترصد الاعتيادي","أعد التقييم عند التأكيد"],
     actions:["المتابعة عبر آليات الترصد الوبائي الاعتيادية","إعادة الاختيار كـ«مؤكدة» فور تأكيد التشخيص مخبريًا لتحديد المسار الصحيح"]};
 }
 function rResultCard(){
   const r = computeResult(); if(!r) return "";
   const badge = r.type==='direct'?'مباشر':r.type==='remote'?'عن بُعد':'بدون تفعيل';
-  return `<div class="rcard res-${r.type}" id="rResult">
+  return `<div id="rResult">${g2Card()}</div><div class="rcard res-${r.type}">
+    <div class="r-src"><b>حسب الدليل الثاني</b> — ${G1_SRC_AR}</div>
     <span class="r-badge">${badge}</span>
     <h2 class="r-res-title">${r.title}</h2>
     <p class="r-desc">${r.desc}</p>
     ${r.chips&&r.chips.length?`<div class="r-chips">${r.chips.map(c=>`<span class="r-chip">${c}</span>`).join('')}</div>`:''}
     <ul class="r-actions">${r.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
-  </div>
-  <div class="rcard"><div class="notify" dir="rtl"><span class="ic" aria-hidden="true">!</span><span lang="ar" style="margin:0">${NOTE_AR}</span></div></div>`;
+  </div>`;
+}
+const T_AR = {I:"إبلاغ فوري", "24":"إبلاغ خلال أقل من 24 ساعة"};
+const T_SH = {I:"فوري", "24":"خلال 24 ساعة"};
+function g1Line(d){
+  const all=G2[d.id]||[];
+  if(!all.length) return {cls:"off", txt:"غير مدرج في قائمة الإبلاغ لمركز أحداث الصحة العامة — يُدار في الفرع كحالات تحت السيطرة."};
+  const parts=[];
+  const sA=all.filter(c=>c.s==="S"&&c.auto), cA=all.filter(c=>c.s==="C"&&c.auto), cond=all.filter(c=>!c.auto);
+  if(sA.length) parts.push(`<b>عند الاشتباه</b> (${T_SH[sA[0].t]})`);
+  if(cA.length && !sA.length) parts.push(`<b>عند التأكيد</b> (${T_SH[cA[0].t]})`);
+  if(cond.length) parts.push(`${parts.length?"أو ":""}<b>عند تحقق:</b> ${cond.map(c=>`${c.sh||c.ar} (${T_SH[c.t]})`).join("، أو ")}`);
+  const now=all.some(c=>c.t==="I");
+  return {cls:now?"now":"h24", txt:`يُصعَّد إلى مركز أحداث الصحة العامة ${parts.join("، ")}.`};
+}
+function g2Line(d){
+  if(d.group==="A" && d.remote) return {cls:"on", txt:"يُفعَّل فريق الاستجابة السريعة لمكافحة العدوى <b>عن بُعد عند الاشتباه</b>، و<b>مباشرةً عند التأكيد</b>."};
+  if(d.group==="A") return {cls:"on", txt:"يُفعَّل فريق الاستجابة السريعة لمكافحة العدوى <b>مباشرةً عند التأكيد</b> (لا تفعيل عند الاشتباه)."};
+  if(d.group==="remoteOnly") return {cls:"on", txt:"يُفعَّل فريق الاستجابة السريعة لمكافحة العدوى <b>عن بُعد عند الاشتباه</b> حتى تحديد المسبب."};
+  if(d.group==="B") return {cls:"on", txt:"يُفعَّل فريق الاستجابة السريعة لمكافحة العدوى <b>عند التأكيد</b>: مباشرةً إذا تحقق مؤشر تصعيد، وعن بُعد إن لم يتحقق (لا تفعيل عند الاشتباه)."};
+  return {cls:"off", txt:"غير مدرج — لا يُفعَّل فريق الاستجابة السريعة لمكافحة العدوى بناءً على هذا الدليل."};
+}
+function escSummary(d){
+  const a=g1Line(d), b=g2Line(d);
+  return `<div class="esc-sum" role="note">
+    <div class="esc-row ${a.cls}"><span class="esc-k">د١</span><span>${a.txt}</span></div>
+    <div class="esc-row ${b.cls}"><span class="esc-k">د٢</span><span>${b.txt}</span></div>
+    <p class="esc-more">اختر حالة الحالة لعرض التفاصيل الكاملة أدناه.</p>
+  </div>`;
+}
+const critLi = c => `<li>${c.ar}<span class="crit-t ${c.t==="I"?"I":"h24"}">${T_AR[c.t]}</span></li>`;
+const G2_FLOW = "يرفع فرع الهيئة الحالة إلى مركز أحداث الصحة العامة خلال المدة المحددة، مع إحاطة القطاع المعني والإدارة التنفيذية لشؤون المناطق ودعم التنفيذ. يطلب المركز تقييمًا للمخاطر، ثم تقرر لجنة الاستجابة لأحداث الصحة العامة تصنيفها «حدث صحة عامة» وتفعيل نمط الاستجابة، بما يشمل فرق الاستجابة السريعة عند الحاجة.";
+const G2_GENERAL = "معايير التصعيد العامة في الدليل الأول (لأي مرض): حالة تستوفي معايير طارئة صحية تثير قلقًا دوليًا، أو مرض ناشئ أو معاود يحتمل انتقاله عبر الحدود الدولية، أو حالات مجتمعية أو مرتبطة بالرعاية الصحية من الدرجة الثالثة أو الرابعة، أو أي حالة أخرى تقررها الإدارة العليا.";
+const GEN = [
+  {id:"pheic", ar:"حالة تستوفي معايير طارئة صحية تثير قلقًا دوليًا"},
+  {id:"emerging", ar:"مرض ناشئ أو معاود يحتمل انتقاله عبر الحدود الدولية"},
+  {id:"grade34", ar:"حالات مجتمعية أو مرتبطة بالرعاية الصحية من الدرجة الثالثة أو الرابعة"},
+  {id:"mgmt", ar:"حالة أخرى تقررها الإدارة العليا"},
+];
+const LVL = {
+  1:"مستوى التأهب الأول — حالات تحت السيطرة يديرها التجمع الصحي بإشراف الفرع، مع الرصد المستمر والتحقق من التنبيهات.",
+  2:"مستوى التأهب الثاني — يُرفع عند وصول حالة تستوفي معايير الإبلاغ للمركز: تقييم المخاطر، وتجهيز موارد الفرع، ومراجعة خطط الاستجابة، وتواجد القيادات. ويرتفع إلى <b>المستوى الثالث</b> إذا صنّفت لجنة الاستجابة الحالة «حدث صحة عامة».",
+  "1to2":"مستوى التأهب الأول حتى تحقق أحد المعايير، ثم يُرفع إلى <b>المستوى الثاني</b> عند استيفاء معيار الإبلاغ للمركز، وإلى <b>الثالث</b> إذا صنّفت لجنة الاستجابة الحالة «حدث صحة عامة»."
+};
+const lvlBox = k => `<div class="lvl lvl-${String(k).replace("1to2","c")}"><span class="lvl-k">مستوى التأهب</span><span>${LVL[k]}</span></div>`;
+function genBox(){
+  const g=rs.gen||{};
+  return `<div class="gen"><p class="gen-h">معايير التصعيد العامة في الدليل الأول (تنطبق على أي مرض) — حدّد إن تحقق أي منها:</p>
+    ${GEN.map(x=>`<label class="r-check ${g[x.id]?'on':''}" for="gen-${x.id}"><input type="checkbox" id="gen-${x.id}" data-gen="${x.id}" ${g[x.id]?'checked':''}><span>${x.ar}</span></label>`).join("")}
+  </div>`;
+}
+function g2Card(){
+  const d=rs.disease, all=G2[d.id]||[], st=rs.status;
+  const head = `<div class="r-src"><b>حسب الدليل الأول</b> — ${G2_SRC_AR}</div>`;
+  const genOn = GEN.filter(x=>(rs.gen||{})[x.id]);
+  const foot = genBox();
+  const rel = all.filter(c=> st==="confirmed" ? true : (c.s==="S"||c.s==="A"));
+  const met = rel.filter(c=>c.auto && (st==="confirmed" || c.s==="S"));
+  const cond = rel.filter(c=>!met.includes(c));
+  if(met.length || genOn.length){
+    const t = (genOn.length || met.some(c=>c.t==="I"))?"I":"24";
+    return `<div class="rcard res-direct">${head}<span class="r-badge">${T_AR[t]}</span>
+      <h2 class="r-res-title">يُصعَّد إلى مركز أحداث الصحة العامة</h2>
+      ${lvlBox(2)}
+      <p class="r-desc">${met.length?"تستوفي الحالة معيار الإبلاغ لمركز أحداث الصحة العامة":"تحقق معيار تصعيد عام"}. ${G2_FLOW}</p>
+      <ul class="r-actions">${met.map(critLi).join("")}${genOn.map(x=>`<li>${x.ar}<span class="crit-t I">معيار تصعيد عام</span></li>`).join("")}</ul>
+      ${cond.length?`<p class="r-hint" style="margin:12px 0 6px">معايير إضافية في القائمة لهذا المرض:</p><ul class="r-actions">${cond.map(critLi).join("")}</ul>`:""}${foot}</div>`;
+  }
+  if(!all.length){
+    return `<div class="rcard res-none">${head}<span class="r-badge">غير مدرج</span>
+      <h2 class="r-res-title">غير مدرج في قائمة الإبلاغ لمركز أحداث الصحة العامة</h2>
+      ${lvlBox(1)}
+      <p class="r-desc">يُدار الموقف في الفرع باعتباره «حالات تحت السيطرة» تحت إشراف فرع هيئة الصحة العامة وبدعم القطاع الفني المختص، ولا يُصعَّد إلى المركز إلا إذا تحقق أحد معايير التصعيد العامة أدناه.</p>${foot}</div>`;
+  }
+  if(cond.length){
+    return `<div class="rcard res-cond">${head}<span class="r-badge">تصعيد مشروط</span>
+      <h2 class="r-res-title">يُصعَّد إلى مركز أحداث الصحة العامة عند تحقق أحد المعايير التالية</h2>
+      ${lvlBox("1to2")}
+      <p class="r-desc">إذا تحقق أحد المعايير أدناه: ${G2_FLOW} وإذا لم يتحقق أي منها، يُدار الموقف في الفرع باعتباره «حالات تحت السيطرة».</p>
+      <ul class="r-actions">${cond.map(critLi).join("")}</ul>${foot}</div>`;
+  }
+  return `<div class="rcard res-none">${head}<span class="r-badge">لا تصعيد في مرحلة الاشتباه</span>
+    <h2 class="r-res-title">لا يوجد معيار إبلاغ للمركز في مرحلة الاشتباه</h2>
+    ${lvlBox(1)}
+    <p class="r-desc">معايير هذا المرض في القائمة تخص الحالات المؤكدة. تُدار الحالة المشتبهة في الفرع باعتبارها «حالات تحت السيطرة»، ويُعاد التقييم فور التأكيد. معايير الحالة المؤكدة:</p>
+    <ul class="r-actions">${all.map(critLi).join("")}</ul>${foot}</div>`;
 }
 function rIsoCard(){
   const d=rs.disease; if(!d||!RRT_ISO[d.id]) return "";
@@ -863,13 +1075,13 @@ function rIsoCard(){
   return `<div class="rcard r-iso">
     <h3>احتياطات العزل الموصى بها</h3>
     ${items.map(e=>`<div class="r-iso-item"><span class="nm">${esc(e.name)}</span><span class="meta">${badges(e.code)}</span>${e.code==="R"?"":`<span class="d">Duration: ${esc(e.dur||"n/a")}</span>`}</div>`).join("")}
-    <div class="r-nav"><button class="xlink" data-act="iso">عرض التفاصيل والمراجع في الجزء ١ ←</button></div>
+    <div class="r-nav"><button class="xlink" data-act="iso">عرض التفاصيل والمراجع في تبويب العزل ←</button></div>
   </div>`;
 }
 
 $rApp.addEventListener("click",e=>{
   const opt=e.target.closest(".r-opt");
-  if(opt){ rs.disease=allDiseases.find(d=>d.id===opt.dataset.id); rs.status=null; rs.checks={}; rs.showResult=false; rs.step=2; rrtRender(); focusFirst(".r-choice:not(:disabled)"); remindFor([rs.disease.id]); return; }
+  if(opt){ rs.disease=allDiseases.find(d=>d.id===opt.dataset.id); rs.status=null; rs.checks={}; rs.gen={}; rs.showResult=false; rs.step=2; rrtRender(); focusFirst(".r-choice:not(:disabled)"); remindFor([rs.disease.id]); return; }
   const ch=e.target.closest(".r-choice");
   if(ch&&!ch.disabled){ rs.status=ch.dataset.status; rrtRender(); focusFirst(`.r-choice[data-status="${rs.status}"]`); return; }
   const b=e.target.closest("[data-act]"); if(!b) return;
@@ -881,6 +1093,8 @@ $rApp.addEventListener("click",e=>{
   else if(a==="iso"){ showInFinder(rs.disease.id); }
 });
 $rApp.addEventListener("change",e=>{
+  const gid=e.target.dataset&&e.target.dataset.gen;
+  if(gid){ rs.gen=rs.gen||{}; rs.gen[gid]=e.target.checked; rrtRender(); focusFirst(`#gen-${gid}`); return; }
   const id=e.target.dataset&&e.target.dataset.ind; if(!id) return;
   rs.checks[id]=e.target.checked; rs.showResult=false; rrtRender(); focusFirst(`#ind-${id}`);
 });
@@ -896,7 +1110,7 @@ function setTab(t){
   document.getElementById("tab-iso").hidden = t!=="iso";
   document.getElementById("tab-rrt").hidden = t!=="rrt";
   document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===t));
-  try{ history.replaceState(null,"",t==="rrt"?"#rrt":"#isolation"); }catch(_){}
+  try{ history.replaceState(null,"",t==="rrt"?location.pathname+location.search:"#isolation"); }catch(_){}
 }
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));
 function openRRT(rid){
@@ -914,8 +1128,9 @@ const NOTE_AR = "يجب إبلاغ قسم مكافحة العدوى في الم�
 const NOTE_HTML = `<div class="notify" role="note"><span class="ic" aria-hidden="true">!</span><span><b>Notify:</b> ${NOTE_EN}<span lang="ar" dir="rtl">${NOTE_AR}</span></span></div>`;
 const reminded = new Set();   // RRT ids already shown this visit
 let modalOpen=false, lastFocus=null, searchTimer=null;
-function remindFor(rids){
-  const fresh=[...new Set(rids)].filter(id=>!reminded.has(id));
+function remindFor(rids){ return; // pop-up removed: the notification shows inline once a disease is selected
+
+  const fresh=[...new Set(rids)].filter(id=>!reminded.has(id) && (allDiseases.find(d=>d.id===id)||{}).group);
   if(!fresh.length || modalOpen) return;
   fresh.forEach(id=>reminded.add(id));
   showReminder(fresh.map(id=>allDiseases.find(d=>d.id===id)).filter(Boolean));
@@ -968,7 +1183,7 @@ document.getElementById("rrtApp").addEventListener("input",e=>{
 const ex=DATA.find(d=>d.name.startsWith("Measles")); if(ex) open.add(ex.id);
 render();
 rrtRender();
-if(location.hash==="#rrt") setTab("rrt");
+setTab(location.hash==="#isolation"?"iso":"rrt");
 </script>
 
 </body>
